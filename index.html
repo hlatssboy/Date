@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Love Compatibility Calculator ❤️</title>
+
+<meta name="description" content="Calculate your love compatibility percentage and share your result with friends.">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff4f91, #8f5cff);
+    color: #222;
+}
+
+.container {
+    width: 92%;
+    max-width: 430px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+.card {
+    background: white;
+    border-radius: 28px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.logo {
+    font-size: 55px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    margin: 5px 0;
+    font-size: 29px;
+    color: #3a1736;
+}
+
+.subtitle {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+input {
+    width: 100%;
+    padding: 16px;
+    margin: 8px 0;
+    border: 2px solid #eee;
+    border-radius: 14px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #ff4f91;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 12px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.calculate {
+    background: #ff3f87;
+    color: white;
+}
+
+.share {
+    background: #25D366;
+    color: white;
+    display: none;
+}
+
+.result {
+    display: none;
+    margin-top: 25px;
+}
+
+.percent {
+    font-size: 65px;
+    font-weight: bold;
+    color: #ff3f87;
+}
+
+.resultText {
+    font-size: 18px;
+    font-weight: bold;
+    color: #43233e;
+    margin: 10px 0;
+}
+
+.ad {
+    margin: 20px 0;
+    padding: 18px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer {
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    margin-top: 18px;
+}
+
+@keyframes heartbeat {
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.heart {
+    display: inline-block;
+    animation: heartbeat 1.2s infinite;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="logo heart">❤️</div>
+
+        <h1>Love Compatibility</h1>
+
+        <div class="subtitle">
+            Find out how compatible you and your crush are!
+        </div>
+
+        <input
+            id="name1"
+            type="text"
+            placeholder="Your name"
+            maxlength="30"
+        >
+
+        <input
+            id="name2"
+            type="text"
+            placeholder="Your crush's name"
+            maxlength="30"
+        >
+
+        <button class="calculate" onclick="calculateLove()">
+            Calculate ❤️
+        </button>
+
+        <div class="result" id="result">
+
+            <div class="percent" id="percentage">
+                0%
+            </div>
+
+            <div class="resultText" id="resultText"></div>
+
+            <button class="share" id="shareButton" onclick="shareResult()">
+                Share Result on WhatsApp 💚
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="ad">
+        Advertisement
+    </div>
+
+    <div class="footer">
+        For entertainment purposes ❤️
+    </div>
+
+</div>
+
+<script>
+
+let currentResult = "";
+
+function calculateLove() {
+
+    const name1 = document.getElementById("name1").value.trim();
+    const name2 = document.getElementById("name2").value.trim();
+
+    if (!name1 || !name2) {
+        alert("Please enter both names ❤️");
+        return;
+    }
+
+    /*
+       Creates a consistent result for the same pair of names.
+       This is an entertainment calculation, not a scientific test.
+    */
+
+    let combined =
+        name1.toLowerCase() +
+        name2.toLowerCase();
+
+    let score = 0;
+
+    for (let i = 0; i < combined.length; i++) {
+        score += combined.charCodeAt(i) * (i + 1);
+    }
+
+    let percentage = (score % 61) + 40;
+
+    document.getElementById("percentage").textContent =
+        percentage + "%";
+
+    let message;
+
+    if (percentage >= 90) {
+        message = "🔥 Extremely compatible! You two are a dangerous combination!";
+    } 
+    else if (percentage >= 75) {
+        message = "❤️ Strong chemistry! Something special could be here.";
+    } 
+    else if (percentage >= 60) {
+        message = "💕 There is definitely some chemistry!";
+    } 
+    else if (percentage >= 50) {
+        message = "👀 Hmm... there might be potential!";
+    } 
+    else {
+        message = "😂 The calculator says you might need to work on it!";
+    }
+
+    document.getElementById("resultText").textContent = message;
+
+    document.getElementById("result").style.display = "block";
+    document.getElementById("shareButton").style.display = "block";
+
+    currentResult =
+        name1 + " ❤️ " + name2 +
+        " = " + percentage +
+        "% compatibility!\n\n" +
+        message;
+}
+
+function shareResult() {
+
+    const whatsappURL =
+        "https://wa.me/?text=" +
+        encodeURIComponent(
+            "❤️ LOVE COMPATIBILITY RESULT ❤️\n\n" +
+            currentResult +
+            "\n\nCheck yours here 👇"
+        );
+
+    window.open(whatsappURL, "_blank");
+}
+
+</script>
+
+</body>
+</html>
