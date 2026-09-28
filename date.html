@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Question For You ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9acb, #b99cff);
+    overflow: hidden;
+}
+
+.card {
+    width: 90%;
+    max-width: 400px;
+    padding: 35px 22px;
+    text-align: center;
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.heart {
+    font-size: 60px;
+    animation: pulse 1.4s infinite;
+}
+
+h1 {
+    color: #32142f;
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+p {
+    color: #76506f;
+    font-size: 17px;
+    margin-bottom: 28px;
+}
+
+button {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 28px;
+    margin: 7px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#yes {
+    background: #e9368f;
+    color: white;
+}
+
+#no {
+    background: #ff4d6d;
+    color: white;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+#message {
+    display: none;
+    margin-top: 22px;
+    color: #e9368f;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.1);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="heart">❤️</div>
+
+    <h1>Will you go on a date with me?</h1>
+
+    <p>I have a little question for you...</p>
+
+    <button id="yes" onclick="sayYes()">YES 💕</button>
+
+    <button id="no" type="button">NO 😏</button>
+
+    <div id="message">
+        Yesss! 🥹❤️ It's a date!
+    </div>
+
+</div>
+
+<script>
+
+function sayYes() {
+
+    document.getElementById("message").style.display = "block";
+
+    const phone = "27795404671";
+
+    const text = "She said YES! ❤️🥹 It's a date!";
+
+    window.location.href =
+        "https://wa.me/" + phone +
+        "?text=" + encodeURIComponent(text);
+}
+
+/* Make NO completely unclickable */
+document.getElementById("no").addEventListener("click", function(event) {
+    event.preventDefault();
+});
+
+</script>
+
+</body>
+</html>
